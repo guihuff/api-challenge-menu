@@ -8,25 +8,25 @@ import { CategoryRepository } from './repositories/category-repository';
 export class CategoryService {
   constructor(private categoryRepository: CategoryRepository) {}
 
-  async create(product: CreateCategoryDto): Promise<string> {
-    const { description, name } = product;
+  async create(category: CreateCategoryDto): Promise<string> {
+    const { description, name } = category;
     const createCategory: Category = {
       id: randomUUID(),
       name,
       description,
     };
 
-    // await this..create(createProduct);
+    await this.categoryRepository.create(createCategory);
 
     return createCategory.id;
   }
 
-  // async findAll(): Promise<Product[]> {
-  //   return this.productRepository.findAll();
-  // }
+  async findAll(): Promise<Category[]> {
+    return this.categoryRepository.findAll();
+  }
 
   // async findById(id: string): Promise<Product> {
-  //   const product = await this.productRepository.findById(id);
+  //   const product = await this.categoryRepository.findById(id);
   //   if (!product) {
   //     throw new NotFoundException(`Produto com ID ${id} não encontrado`);
   //   }
@@ -34,15 +34,15 @@ export class CategoryService {
   // }
 
   // async delete(id: string): Promise<void> {
-  //   const product = await this.productRepository.findById(id);
+  //   const product = await this.categoryRepository.findById(id);
   //   if (!product) {
   //     throw new NotFoundException(`Produto não encontrado`);
   //   }
-  //   await this.productRepository.delete(id);
+  //   await this.categoryRepository.delete(id);
   // }
 
   // async update(product: UpdateProductDto): Promise<Product> {
-  //   const productUpdating = await this.productRepository.findById(product.id);
+  //   const productUpdating = await this.categoryRepository.findById(product.id);
   //   if (!productUpdating) {
   //     throw new NotFoundException(`Produto não encontrado`);
   //   }
@@ -61,7 +61,7 @@ export class CategoryService {
   //   if (product.image) {
   //     productUpdating.image = product.image;
   //   }
-  //   await this.productRepository.update(productUpdating);
+  //   await this.categoryRepository.update(productUpdating);
 
   //   return productUpdating;
   // }

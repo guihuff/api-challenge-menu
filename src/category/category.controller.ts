@@ -1,6 +1,7 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { CreateCategoryDto } from './dto/create-product.dto';
 import { CategoryService } from './category.service';
+import { Category } from './interfaces/category.interface';
 
 @Controller('categories')
 export class CategoryController {
@@ -13,24 +14,24 @@ export class CategoryController {
     return jsonString;
   }
 
-  //   @Get()
-  //   async findAll(): Promise<Product[]> {
-  //     return this.productsService.findAll();
-  //   }
+  @Get()
+  async findAll(): Promise<Category[]> {
+    return this.categoriesService.findAll();
+  }
 
   //   @Get(':id')
   //   async findById(@Param('id') id: string): Promise<Product> {
-  //     return this.productsService.findById(id);
+  //     return this.categoriesService.findById(id);
   //   }
 
   //   @Delete(':id')
   //   @HttpCode(204)
   //   async delete(@Param('id') id: string): Promise<void> {
-  //     return this.productsService.delete(id);
+  //     return this.categoriesService.delete(id);
   //   }
 
   //   @Put()
   //   async update(@Body() updateProduct: UpdateProductDto): Promise<Product> {
-  //     return this.productsService.update(updateProduct);
+  //     return this.categoriesService.update(updateProduct);
   //   }
 }
