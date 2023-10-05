@@ -1,5 +1,7 @@
 export class CreateMenuDto {
   name: string;
-  time: string;
+  timeInit: number;
+  timeEnd: number;
+  isActive: boolean;
   products: string[];
 }

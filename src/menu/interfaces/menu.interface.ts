@@ -1,6 +1,8 @@
 export interface Menu {
   id: string;
   name: string;
-  time: string;
+  timeInit: number;
+  timeEnd: number;
+  isActive: boolean;
   products: string[];
 }
