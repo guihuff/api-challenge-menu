@@ -1,7 +1,17 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
-import { CreateCategoryDto } from './dto/create-product.dto';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
+import { CreateCategoryDto } from './dto/create-category.dto';
 import { CategoryService } from './category.service';
 import { Category } from './interfaces/category.interface';
+import { UpdateCategoryDto } from './dto/update-category.dto';
 
 @Controller('categories')
 export class CategoryController {
@@ -19,19 +29,19 @@ export class CategoryController {
     return this.categoriesService.findAll();
   }
 
-  //   @Get(':id')
-  //   async findById(@Param('id') id: string): Promise<Product> {
-  //     return this.categoriesService.findById(id);
-  //   }
+  @Get(':id')
+  async findById(@Param('id') id: string): Promise<Category> {
+    return this.categoriesService.findById(id);
+  }
 
-  //   @Delete(':id')
-  //   @HttpCode(204)
-  //   async delete(@Param('id') id: string): Promise<void> {
-  //     return this.categoriesService.delete(id);
-  //   }
+  @Delete(':id')
+  @HttpCode(204)
+  async delete(@Param('id') id: string): Promise<void> {
+    return this.categoriesService.delete(id);
+  }
 
-  //   @Put()
-  //   async update(@Body() updateProduct: UpdateProductDto): Promise<Product> {
-  //     return this.categoriesService.update(updateProduct);
-  //   }
+  @Put()
+  async update(@Body() updateCategory: UpdateCategoryDto): Promise<Category> {
+    return this.categoriesService.update(updateCategory);
+  }
 }

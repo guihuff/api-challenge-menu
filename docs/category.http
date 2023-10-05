@@ -20,10 +20,10 @@ Content-Type: application/json
 GET {{apiurl}}/categories
 
 ### GET category by id
-GET {{apiurl}}/categories/d7cdbe66-96b7-4671-a406-cc263a03dcb8
+GET {{apiurl}}/categories/61fd422e-bfc1-41f1-a574-9b9b599725c8
 
 ### DELETE category
-DELETE {{apiurl}}/categories/aaadbb94-4687-4c18-8127-0f5e52c21bfb
+DELETE {{apiurl}}/categories/61fd422e-bfc1-41f1-a574-9b9b599725c8
 
 ### UPDATE category
 # Recebe os dados para modificar um produto (update-category.dto)
@@ -32,6 +32,5 @@ PUT {{apiurl}}/categories
 Content-Type: application/json
 
 {
-  "id": "daccb3a5-8a32-4f1a-adf8-206481b39545",
-  "price": 22.99
+  "id": "1534529a-8672-4533-a2cf-5e02ff7c2fd6"
 }

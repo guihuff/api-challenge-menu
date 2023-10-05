@@ -1,8 +1,9 @@
-import { Injectable } from '@nestjs/common';
-import { CreateCategoryDto } from './dto/create-product.dto';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { CreateCategoryDto } from './dto/create-category.dto';
 import { randomUUID } from 'crypto';
 import { Category } from './interfaces/category.interface';
 import { CategoryRepository } from './repositories/category-repository';
+import { UpdateCategoryDto } from './dto/update-category.dto';
 
 @Injectable()
 export class CategoryService {
@@ -25,44 +26,39 @@ export class CategoryService {
     return this.categoryRepository.findAll();
   }
 
-  // async findById(id: string): Promise<Product> {
-  //   const product = await this.categoryRepository.findById(id);
-  //   if (!product) {
-  //     throw new NotFoundException(`Produto com ID ${id} não encontrado`);
-  //   }
-  //   return product;
-  // }
+  async findById(id: string): Promise<Category> {
+    const category = await this.categoryRepository.findById(id);
+    if (!category) {
+      throw new NotFoundException(`Categoria com ID ${id} não encontrado`);
+    }
+    return category;
+  }
 
-  // async delete(id: string): Promise<void> {
-  //   const product = await this.categoryRepository.findById(id);
-  //   if (!product) {
-  //     throw new NotFoundException(`Produto não encontrado`);
-  //   }
-  //   await this.categoryRepository.delete(id);
-  // }
+  async delete(id: string): Promise<void> {
+    const category = await this.categoryRepository.findById(id);
+    if (!category) {
+      throw new NotFoundException(`Categoria não encontrado`);
+    }
+    await this.categoryRepository.delete(id);
+  }
 
-  // async update(product: UpdateProductDto): Promise<Product> {
-  //   const productUpdating = await this.categoryRepository.findById(product.id);
-  //   if (!productUpdating) {
-  //     throw new NotFoundException(`Produto não encontrado`);
-  //   }
-  //   if (product.name) {
-  //     productUpdating.name = product.name;
-  //   }
-  //   if (product.description) {
-  //     productUpdating.description = product.description;
-  //   }
-  //   if (product.price) {
-  //     productUpdating.price = product.price;
-  //   }
-  //   if (product.id_category) {
-  //     productUpdating.id_category = product.id_category;
-  //   }
-  //   if (product.image) {
-  //     productUpdating.image = product.image;
-  //   }
-  //   await this.categoryRepository.update(productUpdating);
+  async update(category: UpdateCategoryDto): Promise<Category> {
+    const categoryUpdating = await this.categoryRepository.findById(
+      category.id,
+    );
+    if (!categoryUpdating) {
+      throw new NotFoundException(`Produto não encontrado`);
+    }
+    const categoryAfter: Category = {
+      id: category.id,
+      name: category.name ? category.name : categoryUpdating.name,
+      description: category.description
+        ? category.description
+        : categoryUpdating.description,
+    };
 
-  //   return productUpdating;
-  // }
+    await this.categoryRepository.update(categoryAfter);
+
+    return categoryAfter;
+  }
 }
