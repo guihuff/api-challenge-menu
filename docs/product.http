@@ -1,0 +1,35 @@
+### Variables
+@apiurl = http://localhost:3000
+
+### GET pong
+# Teste para verificar se a api está no ar
+GET {{apiurl}}/ping
+
+### POST product
+POST {{apiurl}}/products
+Content-Type: application/json
+
+{
+  "name": "teste 2",
+  "description": "um testezinho basico",
+  "price": 89,
+  "id_category": "string"
+}
+
+### GET products
+GET {{apiurl}}/products
+
+### GET product by id
+GET {{apiurl}}/products/d7cdbe66-96b7-4671-a406-cc263a03dcb8
+
+### DELETE product
+DELETE {{apiurl}}/products/aaadbb94-4687-4c18-8127-0f5e52c21bfb
+
+### UPDATE product
+PUT {{apiurl}}/products
+Content-Type: application/json
+
+{
+  "id": "daccb3a5-8a32-4f1a-adf8-206481b39545",
+  "price": 22.99
+}
