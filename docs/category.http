@@ -1,0 +1,17 @@
+### Variables
+@apiurl = http://localhost:3000
+
+### GET pong
+# Teste para verificar se a api está no ar
+GET {{apiurl}}/ping
+
+### POST categories
+# Recebe os dados para cadastrar um produto (create-product.dto)
+
+POST {{apiurl}}/categories
+Content-Type: application/json
+
+{
+  "name": "category um",
+  "description": "um testezinho basico"
+}
