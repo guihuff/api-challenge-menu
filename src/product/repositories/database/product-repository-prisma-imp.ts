@@ -64,6 +64,29 @@ export class ProductRepositoryPrismaImp implements ProductRepository {
     return product;
   }
 
+  async findByIdWithCategory(id: string): Promise<GetProductResponseDto> {
+    const product = await this.prisma.product.findFirst({
+      where: {
+        id,
+      },
+      select: {
+        id: true,
+        name: true,
+        description: true,
+        category: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+        price: true,
+        image: true,
+        imageURL: true,
+      },
+    });
+    return product;
+  }
+
   async delete(id: string): Promise<void> {
     await this.prisma.product.delete({
       where: {
@@ -78,6 +101,37 @@ export class ProductRepositoryPrismaImp implements ProductRepository {
         id: product.id,
       },
       data: { ...product },
+      select: {
+        id: true,
+        name: true,
+        description: true,
+        category: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+        price: true,
+        image: true,
+        imageURL: true,
+      },
+    });
+    return productAfterUpdate;
+  }
+
+  async updateImage(
+    id: string,
+    fileName: string,
+    path: string,
+  ): Promise<GetProductResponseDto> {
+    const productAfterUpdate = await this.prisma.product.update({
+      where: {
+        id,
+      },
+      data: {
+        image: fileName,
+        imageURL: path,
+      },
       select: {
         id: true,
         name: true,

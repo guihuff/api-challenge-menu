@@ -12,6 +12,12 @@ export abstract class ProductRepository {
   }: Product): Promise<void>;
   abstract findAll(): Promise<GetProductResponseDto[]>;
   abstract findById(id: string): Promise<Product>;
+  abstract findByIdWithCategory(id: string): Promise<GetProductResponseDto>;
   abstract delete(id: string): Promise<void>;
   abstract update(product: Product): Promise<GetProductResponseDto>;
+  abstract updateImage(
+    id: string,
+    fileName: string,
+    path: string,
+  ): Promise<GetProductResponseDto>;
 }
