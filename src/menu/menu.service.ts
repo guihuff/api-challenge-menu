@@ -3,6 +3,7 @@ import { MenuRepository } from './repositories/menu-repository';
 import { CreateMenuDto } from './dto/create-menu.dto';
 import { Menu, TimeRole } from './interfaces/menu.interface';
 import { randomUUID } from 'crypto';
+import { UpdateMenuDto } from './dto/update-menu.dto';
 
 @Injectable()
 export class MenuService {
@@ -49,5 +50,32 @@ export class MenuService {
       const menu = await this.menuRepository.findByTime(TimeRole.night);
       return menu;
     }
+  }
+
+  async delete(id: string): Promise<void> {
+    const menu = await this.menuRepository.findById(id);
+    if (!menu) {
+      throw new NotFoundException(`Menu não encontrado`);
+    }
+    await this.menuRepository.delete(id);
+  }
+
+  async update(menu: UpdateMenuDto): Promise<Menu> {
+    const menuUpdating = await this.menuRepository.findById(menu.id);
+    if (!menuUpdating) {
+      throw new NotFoundException(`Menu não encontrado`);
+    }
+    if (menu.name) {
+      menuUpdating.name = menu.name;
+    }
+    if (menu.time) {
+      menuUpdating.time = menu.time;
+    }
+    if (menu.isActive) {
+      menuUpdating.isActive = menu.isActive;
+    }
+    await this.menuRepository.update(menuUpdating);
+
+    return menuUpdating;
   }
 }

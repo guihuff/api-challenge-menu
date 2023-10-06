@@ -1,7 +1,17 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { MenuService } from './menu.service';
 import { CreateMenuDto } from './dto/create-menu.dto';
 import { Menu } from './interfaces/menu.interface';
+import { UpdateMenuDto } from './dto/update-menu.dto';
 
 @Controller('menus')
 export class MenuController {
@@ -27,5 +37,16 @@ export class MenuController {
   @Get()
   async findByTime(): Promise<Menu> {
     return this.menusService.findByTime();
+  }
+
+  @Delete(':id')
+  @HttpCode(204)
+  async delete(@Param('id') id: string): Promise<void> {
+    return this.menusService.delete(id);
+  }
+
+  @Put()
+  async update(@Body() updateMenu: UpdateMenuDto): Promise<Menu> {
+    return this.menusService.update(updateMenu);
   }
 }
