@@ -39,15 +39,15 @@ export class MenuService {
     const now = new Date().getHours();
     if (now >= 6) {
       if (now < 18) {
-        const menu = await this.menuRepository.findByTime(TimeRole.day);
+        const menu = await this.menuRepository.findByTime(TimeRole.DAY);
         return menu;
       }
       if (now >= 18) {
-        const menu = await this.menuRepository.findByTime(TimeRole.night);
+        const menu = await this.menuRepository.findByTime(TimeRole.NIGHT);
         return menu;
       }
     } else if (now < 6) {
-      const menu = await this.menuRepository.findByTime(TimeRole.night);
+      const menu = await this.menuRepository.findByTime(TimeRole.NIGHT);
       return menu;
     }
   }

@@ -7,6 +7,6 @@ export interface Menu {
 }
 
 export enum TimeRole {
-  night = 'night',
-  day = 'day',
+  NIGHT = 'NIGHT',
+  DAY = 'DAY',
 }
