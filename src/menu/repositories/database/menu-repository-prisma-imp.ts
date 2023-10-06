@@ -3,19 +3,13 @@ import { MenuRepository } from '../menu-repository';
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { PrismaService } from 'src/database/prisma.service';
 import { $Enums } from '@prisma/client';
+import { ResponseFindMenuDto } from 'src/menu/dto/response-find-menu-dto';
 
 @Injectable()
 export class MenuRepositoryPrismaImp implements MenuRepository {
   constructor(private prisma: PrismaService) {}
 
   async create(menu: Menu): Promise<void> {
-    const manyProducts = menu.products.map((value) => {
-      console.log(value);
-      return { id_product: value.id_product };
-    });
-
-    console.log(manyProducts);
-
     await this.prisma.menu
       .create({
         data: {
@@ -24,7 +18,7 @@ export class MenuRepositoryPrismaImp implements MenuRepository {
           time: menu.time,
           isActive: menu.isActive,
           products: {
-            create: manyProducts,
+            create: menu.products,
           },
         },
       })
@@ -33,15 +27,21 @@ export class MenuRepositoryPrismaImp implements MenuRepository {
       });
   }
 
-  async addProduct(
-    menu: string,
-    products: { id_product: string }[],
-  ): Promise<{ count: number }> {
-    return { count: 0 };
-  }
-
-  findAll(): Promise<Menu[]> {
-    throw new Error('Method not implemented.');
+  async findAll(): Promise<Menu[]> {
+    const menus = await this.prisma.menu.findMany({
+      select: {
+        id: true,
+        name: true,
+        isActive: true,
+        time: true,
+        products: {
+          select: {
+            id_product: true,
+          },
+        },
+      },
+    });
+    return menus;
   }
 
   async findById(id: string): Promise<Menu> {
@@ -63,15 +63,76 @@ export class MenuRepositoryPrismaImp implements MenuRepository {
     return menu;
   }
 
-  async findByTime(time: $Enums.TimeRole): Promise<Menu> {
-    throw new Error('Method not implemented.');
+  async findByTime(time: $Enums.TimeRole): Promise<ResponseFindMenuDto> {
+    const menu = await this.prisma.menu.findFirst({
+      where: {
+        time,
+        isActive: true,
+      },
+      select: {
+        id: true,
+        name: true,
+        time: true,
+        isActive: true,
+        products: {
+          select: {
+            product: {
+              select: {
+                id: true,
+                name: true,
+                description: true,
+                category: {
+                  select: {
+                    id: true,
+                    name: true,
+                    description: true,
+                  },
+                },
+                image: true,
+                price: true,
+              },
+            },
+          },
+        },
+      },
+    });
+    return menu;
   }
+
   async delete(id: string): Promise<void> {
     await this.prisma.menu.delete({
       where: { id },
     });
   }
+
   async update(menu: Menu): Promise<Menu> {
-    throw new Error('Method not implemented.');
+    await this.prisma.menuProduct.deleteMany({
+      where: {
+        id_menu: menu.id,
+      },
+    });
+
+    await this.prisma.menu
+      .update({
+        where: {
+          id: menu.id,
+        },
+        data: {
+          name: menu.name,
+          time: menu.time,
+          isActive: menu.isActive,
+          products: {
+            create: menu.products,
+          },
+        },
+        include: {
+          products: true,
+        },
+      })
+      .catch((err) => {
+        console.log(err);
+        throw new InternalServerErrorException('O Cardápio não foi atualizado');
+      });
+    return menu;
   }
 }

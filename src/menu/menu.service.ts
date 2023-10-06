@@ -5,6 +5,7 @@ import { Menu } from './interfaces/menu.interface';
 import { randomUUID } from 'crypto';
 import { UpdateMenuDto } from './dto/update-menu.dto';
 import { $Enums } from '@prisma/client';
+import { ResponseFindMenuDto } from './dto/response-find-menu-dto';
 
 @Injectable()
 export class MenuService {
@@ -37,7 +38,7 @@ export class MenuService {
     return menu;
   }
 
-  async findByTime(): Promise<Menu> {
+  async findByTime(): Promise<ResponseFindMenuDto> {
     const now = new Date().getHours();
     if (now >= 6) {
       if (now < 18) {
@@ -65,22 +66,27 @@ export class MenuService {
   }
 
   async update(menu: UpdateMenuDto): Promise<Menu> {
-    // const menuUpdating = await this.menuRepository.findById(menu.id);
-    // if (!menuUpdating) {
-    //   throw new NotFoundException(`Menu não encontrado`);
-    // }
-    // if (menu.name) {
-    //   menuUpdating.name = menu.name;
-    // }
-    // if (menu.time) {
-    //   menuUpdating.time = menu.time;
-    // }
-    // if (menu.isActive) {
-    //   menuUpdating.isActive = menu.isActive;
-    // }
-    // // await this.menuRepository.update(menuUpdating);
+    const menuUpdating = await this.menuRepository.findById(menu.id);
+    if (!menuUpdating) {
+      throw new NotFoundException(`Menu não encontrado`);
+    }
 
-    // return menuUpdating;
-    return null;
+    if (menu.name) {
+      menuUpdating.name = menu.name;
+    }
+    if (menu.isActive) {
+      menuUpdating.isActive = menu.isActive;
+    }
+    if (menu.time) {
+      menuUpdating.time = menu.time;
+    }
+    if (menu.products) {
+      menuUpdating.products = menu.products;
+    }
+    console.log(menuUpdating.products);
+
+    // await this.menuRepository.update(menuUpdating);
+
+    return menuUpdating;
   }
 }

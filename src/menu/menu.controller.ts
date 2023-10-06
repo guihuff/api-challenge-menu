@@ -12,6 +12,7 @@ import { MenuService } from './menu.service';
 import { CreateMenuDto } from './dto/create-menu.dto';
 import { Menu } from './interfaces/menu.interface';
 import { UpdateMenuDto } from './dto/update-menu.dto';
+import { ResponseFindMenuDto } from './dto/response-find-menu-dto';
 
 @Controller('menus')
 export class MenuController {
@@ -35,7 +36,7 @@ export class MenuController {
   }
 
   @Get()
-  async findByTime(): Promise<Menu> {
+  async findByTime(): Promise<ResponseFindMenuDto> {
     return this.menusService.findByTime();
   }
 
