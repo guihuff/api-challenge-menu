@@ -20,12 +20,13 @@ model Category {
 }
 
 model Product {
-  id          String @id @db.Char(36)
-  name        String @db.VarChar(80)
-  description String @db.Text
+  id          String  @id @db.Char(36)
+  name        String  @db.VarChar(80)
+  description String  @db.Text
   price       Float
-  id_category String @db.Char(36)
+  id_category String  @db.Char(36)
   image       String
+  imageURL    String?
 
   category Category      @relation(fields: [id_category], references: [id])
   menu     MenuProduct[]

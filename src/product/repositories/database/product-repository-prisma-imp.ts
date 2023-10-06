@@ -18,6 +18,7 @@ export class ProductRepositoryPrismaImp implements ProductRepository {
           price: product.price,
           id_category: product.id_category,
           image: product.image,
+          imageURL: product.imageURL,
         },
       })
       .catch(() => {
@@ -39,6 +40,7 @@ export class ProductRepositoryPrismaImp implements ProductRepository {
         },
         price: true,
         image: true,
+        imageURL: true,
       },
     });
     return products;
@@ -56,6 +58,7 @@ export class ProductRepositoryPrismaImp implements ProductRepository {
         price: true,
         image: true,
         id_category: true,
+        imageURL: true,
       },
     });
     return product;
@@ -74,7 +77,7 @@ export class ProductRepositoryPrismaImp implements ProductRepository {
       where: {
         id: product.id,
       },
-      data: product,
+      data: { ...product },
       select: {
         id: true,
         name: true,
@@ -87,10 +90,9 @@ export class ProductRepositoryPrismaImp implements ProductRepository {
         },
         price: true,
         image: true,
+        imageURL: true,
       },
     });
     return productAfterUpdate;
-
-    return null;
   }
 }

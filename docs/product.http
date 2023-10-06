@@ -20,7 +20,7 @@ Content-Type: application/json
   "name": "teste 1",
   "description": "um testezinho basico",
   "price": 89,
-  "id_category": "582fbe83-b558-4d4e-9678-0de9d09fced9",
+  "id_category": "0d5b72fb-1b08-4313-8b4c-dadc2be2974a",
   "image": "imageName"
 }
 
@@ -28,7 +28,7 @@ Content-Type: application/json
 GET {{apiurl}}/products
 
 ### GET product by id
-GET {{apiurl}}/products/3ac11ef5-e823-480f-998c-7c87cc5d0ca9
+GET {{apiurl}}/products/12dcdd20-21c9-4262-af38-97c34791f50b
 
 ### DELETE product
 DELETE {{apiurl}}/products/3ac11ef5-e823-480f-998c-7c87cc5d0ca9
@@ -40,6 +40,6 @@ PATCH  {{apiurl}}/products
 Content-Type: application/json
 
 {
-  "id": "8948641d-7e6e-4b75-900c-1a70652e9db5",
+  "id": "12dcdd20-21c9-4262-af38-97c34791f50b",
   "price": 35
 }

@@ -19,6 +19,7 @@ export class ProductService {
       description,
       id_category,
       image,
+      imageURL: 'none',
     };
 
     await this.productRepository.create(createProduct);
@@ -50,6 +51,7 @@ export class ProductService {
     if (!productUpdating) {
       throw new NotFoundException(`Produto não encontrado`);
     }
+
     if (product.name) {
       productUpdating.name = product.name;
     }
@@ -62,9 +64,7 @@ export class ProductService {
     if (product.id_category) {
       productUpdating.id_category = product.id_category;
     }
-    if (product.image) {
-      productUpdating.image = product.image;
-    }
+
     await this.productRepository.update(productUpdating);
 
     return productUpdating;

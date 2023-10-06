@@ -8,4 +8,5 @@ export class GetProductResponseDto {
     name: string;
   };
   image: string;
+  imageURL?: string;
 }
