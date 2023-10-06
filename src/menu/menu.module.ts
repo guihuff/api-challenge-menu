@@ -2,7 +2,8 @@ import { Module } from '@nestjs/common';
 import { MenuController } from './menu.controller';
 import { MenuService } from './menu.service';
 import { MenuRepository } from './repositories/menu-repository';
-import { MenuRepositoryImp } from './repositories/database/menu-repository-imp';
+import { MenuRepositoryPrismaImp } from './repositories/database/menu-repository-prisma-imp';
+import { PrismaService } from 'src/database/prisma.service';
 
 @Module({
   controllers: [MenuController],
@@ -10,8 +11,9 @@ import { MenuRepositoryImp } from './repositories/database/menu-repository-imp';
     MenuService,
     {
       provide: MenuRepository,
-      useClass: MenuRepositoryImp,
+      useClass: MenuRepositoryPrismaImp,
     },
+    PrismaService,
   ],
 })
 export class MenuModule {}

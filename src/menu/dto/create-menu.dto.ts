@@ -1,5 +1,5 @@
+import { $Enums } from '@prisma/client';
 import { IsEnum, IsNotEmpty, Length } from 'class-validator';
-import { TimeRole } from '../interfaces/menu.interface';
 
 export class CreateMenuDto {
   @IsNotEmpty()
@@ -7,11 +7,11 @@ export class CreateMenuDto {
   name: string;
 
   @IsNotEmpty()
-  @IsEnum(TimeRole)
-  time: TimeRole;
+  @IsEnum($Enums.TimeRole)
+  time: $Enums.TimeRole;
 
   @IsNotEmpty()
   isActive: boolean;
 
-  products: string[];
+  products: { id_product: string }[];
 }

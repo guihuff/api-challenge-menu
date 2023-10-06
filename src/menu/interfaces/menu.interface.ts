@@ -1,12 +1,9 @@
+import { $Enums } from '@prisma/client';
+
 export interface Menu {
   id: string;
   name: string;
-  time: TimeRole;
+  time: $Enums.TimeRole;
   isActive: boolean;
-  products: string[];
-}
-
-export enum TimeRole {
-  NIGHT = 'NIGHT',
-  DAY = 'DAY',
+  products: { id_product: string }[];
 }

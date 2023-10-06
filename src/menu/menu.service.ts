@@ -1,13 +1,15 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { MenuRepository } from './repositories/menu-repository';
 import { CreateMenuDto } from './dto/create-menu.dto';
-import { Menu, TimeRole } from './interfaces/menu.interface';
+import { Menu } from './interfaces/menu.interface';
 import { randomUUID } from 'crypto';
 import { UpdateMenuDto } from './dto/update-menu.dto';
+import { $Enums } from '@prisma/client';
 
 @Injectable()
 export class MenuService {
   constructor(private menuRepository: MenuRepository) {}
+
   async create(menu: CreateMenuDto): Promise<string> {
     const { name, time, isActive, products } = menu;
     const createMenu: Menu = {
@@ -39,15 +41,17 @@ export class MenuService {
     const now = new Date().getHours();
     if (now >= 6) {
       if (now < 18) {
-        const menu = await this.menuRepository.findByTime(TimeRole.DAY);
+        const menu = await this.menuRepository.findByTime($Enums.TimeRole.DAY);
         return menu;
       }
       if (now >= 18) {
-        const menu = await this.menuRepository.findByTime(TimeRole.NIGHT);
+        const menu = await this.menuRepository.findByTime(
+          $Enums.TimeRole.NIGHT,
+        );
         return menu;
       }
     } else if (now < 6) {
-      const menu = await this.menuRepository.findByTime(TimeRole.NIGHT);
+      const menu = await this.menuRepository.findByTime($Enums.TimeRole.NIGHT);
       return menu;
     }
   }
@@ -61,21 +65,22 @@ export class MenuService {
   }
 
   async update(menu: UpdateMenuDto): Promise<Menu> {
-    const menuUpdating = await this.menuRepository.findById(menu.id);
-    if (!menuUpdating) {
-      throw new NotFoundException(`Menu não encontrado`);
-    }
-    if (menu.name) {
-      menuUpdating.name = menu.name;
-    }
-    if (menu.time) {
-      menuUpdating.time = menu.time;
-    }
-    if (menu.isActive) {
-      menuUpdating.isActive = menu.isActive;
-    }
-    await this.menuRepository.update(menuUpdating);
+    // const menuUpdating = await this.menuRepository.findById(menu.id);
+    // if (!menuUpdating) {
+    //   throw new NotFoundException(`Menu não encontrado`);
+    // }
+    // if (menu.name) {
+    //   menuUpdating.name = menu.name;
+    // }
+    // if (menu.time) {
+    //   menuUpdating.time = menu.time;
+    // }
+    // if (menu.isActive) {
+    //   menuUpdating.isActive = menu.isActive;
+    // }
+    // // await this.menuRepository.update(menuUpdating);
 
-    return menuUpdating;
+    // return menuUpdating;
+    return null;
   }
 }
