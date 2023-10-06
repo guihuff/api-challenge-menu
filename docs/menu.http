@@ -5,8 +5,21 @@
 # Teste para verificar se a api está no ar
 GET {{apiurl}}/ping
 
-### POST categories
-# Recebe os dados para cadastrar um produto (create-product.dto)
+### POST menus
+# Recebe os dados para cadastrar um menu (create-menu.dto) Noite
+
+POST {{apiurl}}/menus
+Content-Type: application/json
+
+{
+  "name": "menu da noite",
+  "products": [],
+  "time": "night",
+  "isActive": true 
+}
+
+### POST menus
+# Recebe os dados para cadastrar um menu (create-menu.dto) Dia
 
 POST {{apiurl}}/menus
 Content-Type: application/json
@@ -14,7 +27,16 @@ Content-Type: application/json
 {
   "name": "menu do dia",
   "products": [],
-  "timeInit": 18,
-  "timeEnd": 6,
+  "time": "day",
   "isActive": true 
 }
+
+
+### GET menus
+GET {{apiurl}}/menus/all
+
+### GET menu by id
+GET {{apiurl}}/menus/9bb3dbe1-8ad4-4dd3-a0aa-ea75ed778cb6
+
+### GET menu by hour
+GET {{apiurl}}/menus

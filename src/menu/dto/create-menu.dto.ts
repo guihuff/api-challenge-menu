@@ -1,7 +1,8 @@
+import { TimeRole } from '../interfaces/menu.interface';
+
 export class CreateMenuDto {
   name: string;
-  timeInit: number;
-  timeEnd: number;
+  time: TimeRole;
   isActive: boolean;
   products: string[];
 }

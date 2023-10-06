@@ -1,4 +1,4 @@
-import { Menu } from 'src/menu/interfaces/menu.interface';
+import { Menu, TimeRole } from 'src/menu/interfaces/menu.interface';
 import { MenuRepository } from '../menu-repository';
 import { Injectable } from '@nestjs/common';
 
@@ -16,6 +16,11 @@ export class MenuRepositoryImp implements MenuRepository {
 
   async findById(id: string): Promise<Menu> {
     const menu = global.menu.find((object) => object.id === id);
+    return menu;
+  }
+
+  async findByTime(time: TimeRole): Promise<Menu> {
+    const menu = global.menu.find((object) => object.time === time);
     return menu;
   }
 

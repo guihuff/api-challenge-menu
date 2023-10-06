@@ -1,8 +1,9 @@
+import { TimeRole } from '../interfaces/menu.interface';
+
 export class UpdateMenuDto {
   id: string;
   name?: string;
-  timeInit?: number;
-  timeEnd?: number;
+  time?: TimeRole;
   isActive?: boolean;
   products?: string[];
 }

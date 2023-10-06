@@ -1,8 +1,12 @@
 export interface Menu {
   id: string;
   name: string;
-  timeInit: number;
-  timeEnd: number;
+  time: TimeRole;
   isActive: boolean;
   products: string[];
+}
+
+export enum TimeRole {
+  night = 'night',
+  day = 'day',
 }
