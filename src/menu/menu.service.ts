@@ -83,9 +83,8 @@ export class MenuService {
     if (menu.products) {
       menuUpdating.products = menu.products;
     }
-    console.log(menuUpdating.products);
 
-    // await this.menuRepository.update(menuUpdating);
+    await this.menuRepository.update(menuUpdating);
 
     return menuUpdating;
   }

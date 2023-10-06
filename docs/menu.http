@@ -57,5 +57,6 @@ Content-Type: application/json
   "id": "f4655819-5da8-4648-ae6b-b352acb3d473",
   "time": "NIGHT",
   "products": [
-    {"id_product": "1a3bfc26-f095-42a7-a132-000c44c1e94e"}]
+    {"id_product": "1a3bfc26-f095-42a7-a132-000c44c1e94e"},
+    {"id_product": "bfe6f0b4-1852-4906-b4e8-d0eb89fbedc8"}]
 }

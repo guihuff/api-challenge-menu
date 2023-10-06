@@ -129,8 +129,7 @@ export class MenuRepositoryPrismaImp implements MenuRepository {
           products: true,
         },
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
         throw new InternalServerErrorException('O Cardápio não foi atualizado');
       });
     return menu;
