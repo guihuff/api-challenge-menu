@@ -17,7 +17,7 @@ POST {{apiurl}}/products
 Content-Type: application/json
 
 {
-  "name": "teste 1 image null",
+  "name": "teste 2 image null",
   "description": "um testezinho basico",
   "price": 89,
   "id_category": "0d5b72fb-1b08-4313-8b4c-dadc2be2974a",
@@ -28,7 +28,7 @@ Content-Type: application/json
 GET {{apiurl}}/products
 
 ### GET product by id
-GET {{apiurl}}/products/12dcdd20-21c9-4262-af38-97c34791f50b
+GET {{apiurl}}/products/8515f48e-eabb-4c48-abc8-9228b8f5c369
 
 ### DELETE product
 DELETE {{apiurl}}/products/3ac11ef5-e823-480f-998c-7c87cc5d0ca9
@@ -44,6 +44,20 @@ Content-Type: application/json
   "price": 35
 }
 
-###
+### UPDATE product adicionando uma imagem a um produto
+PATCH {{apiurl}}/products/image
+Content-Type: multipart/form-data; boundary=Splitter
+
+--Splitter
+Content-Disposition: form-data; name="id"
+
+4fa8164c-3fd0-4d7d-a22d-3eb75ef78230
+--Splitter
+Content-Disposition: form-data; name="image"; filename="P1.jpg" 
+Content-Type: image/jpeg
+
+< /home/gfhuff/Pictures/P1.jpg
+--Splitter--
+
 
 
