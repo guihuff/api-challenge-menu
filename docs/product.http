@@ -36,10 +36,10 @@ DELETE {{apiurl}}/products/3ac11ef5-e823-480f-998c-7c87cc5d0ca9
 ### UPDATE product
 # Recebe os dados para modificar um produto (update-product.dto)
 
-PUT {{apiurl}}/products
+PATCH  {{apiurl}}/products
 Content-Type: application/json
 
 {
   "id": "8948641d-7e6e-4b75-900c-1a70652e9db5",
-  "price": 22.99
+  "price": 35
 }

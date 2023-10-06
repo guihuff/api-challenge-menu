@@ -5,8 +5,8 @@ import {
   Get,
   HttpCode,
   Param,
+  Patch,
   Post,
-  Put,
 } from '@nestjs/common';
 import { MenuService } from './menu.service';
 import { CreateMenuDto } from './dto/create-menu.dto';
@@ -45,7 +45,7 @@ export class MenuController {
     return this.menusService.delete(id);
   }
 
-  @Put()
+  @Patch()
   async update(@Body() updateMenu: UpdateMenuDto): Promise<Menu> {
     return this.menusService.update(updateMenu);
   }

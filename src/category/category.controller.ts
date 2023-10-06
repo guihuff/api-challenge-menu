@@ -5,8 +5,8 @@ import {
   Get,
   HttpCode,
   Param,
+  Patch,
   Post,
-  Put,
 } from '@nestjs/common';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { CategoryService } from './category.service';
@@ -40,7 +40,7 @@ export class CategoryController {
     return this.categoriesService.delete(id);
   }
 
-  @Put()
+  @Patch()
   async update(@Body() updateCategory: UpdateCategoryDto): Promise<Category> {
     return this.categoriesService.update(updateCategory);
   }
