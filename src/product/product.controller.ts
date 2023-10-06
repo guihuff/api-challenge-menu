@@ -6,12 +6,13 @@ import {
   Delete,
   Param,
   HttpCode,
-  Put,
+  Patch,
 } from '@nestjs/common';
 import { CreateProductDto } from './dtos/create-product.dto';
 import { ProductService } from './product.service';
 import { Product } from './interfaces/product.interface';
 import { UpdateProductDto } from './dtos/update-product.dto';
+import { GetProductResponseDto } from './dtos/get-product-response.dto';
 
 @Controller('products')
 export class ProductController {
@@ -25,7 +26,7 @@ export class ProductController {
   }
 
   @Get()
-  async findAll(): Promise<Product[]> {
+  async findAll(): Promise<GetProductResponseDto[]> {
     return this.productsService.findAll();
   }
 
@@ -40,7 +41,7 @@ export class ProductController {
     return this.productsService.delete(id);
   }
 
-  @Put()
+  @Patch()
   async update(@Body() updateProduct: UpdateProductDto): Promise<Product> {
     return this.productsService.update(updateProduct);
   }

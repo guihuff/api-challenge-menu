@@ -7,25 +7,31 @@ GET {{apiurl}}/ping
 
 ### POST product
 # Recebe os dados para cadastrar um produto (create-product.dto)
-
+# {
+#   "name": "teste 2",
+#   "description": "um testezinho basico",
+#   "price": 89,
+#   "id_category": "string"
+# }
 POST {{apiurl}}/products
 Content-Type: application/json
 
 {
-  "name": "teste 2",
+  "name": "teste 1",
   "description": "um testezinho basico",
   "price": 89,
-  "id_category": "string"
+  "id_category": "582fbe83-b558-4d4e-9678-0de9d09fced9",
+  "image": "imageName"
 }
 
 ### GET products
 GET {{apiurl}}/products
 
 ### GET product by id
-GET {{apiurl}}/products/d7cdbe66-96b7-4671-a406-cc263a03dcb8
+GET {{apiurl}}/products/3ac11ef5-e823-480f-998c-7c87cc5d0ca9
 
 ### DELETE product
-DELETE {{apiurl}}/products/aaadbb94-4687-4c18-8127-0f5e52c21bfb
+DELETE {{apiurl}}/products/3ac11ef5-e823-480f-998c-7c87cc5d0ca9
 
 ### UPDATE product
 # Recebe os dados para modificar um produto (update-product.dto)
@@ -34,6 +40,6 @@ PUT {{apiurl}}/products
 Content-Type: application/json
 
 {
-  "id": "daccb3a5-8a32-4f1a-adf8-206481b39545",
+  "id": "8948641d-7e6e-4b75-900c-1a70652e9db5",
   "price": 22.99
 }

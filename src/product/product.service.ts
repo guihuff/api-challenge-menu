@@ -4,28 +4,28 @@ import { ProductRepository } from './repositories/product-repository';
 import { Product } from './interfaces/product.interface';
 import { CreateProductDto } from './dtos/create-product.dto';
 import { UpdateProductDto } from './dtos/update-product.dto';
+import { GetProductResponseDto } from './dtos/get-product-response.dto';
 
 @Injectable()
 export class ProductService {
   constructor(private productRepository: ProductRepository) {}
 
   async create(product: CreateProductDto): Promise<string> {
-    const { description, id_category, name, price } = product;
+    const { description, id_category, name, price, image } = product;
     const createProduct: Product = {
       id: randomUUID(),
       name,
       price,
       description,
       id_category,
-      image: 'imagem',
+      image,
     };
 
     await this.productRepository.create(createProduct);
-
     return createProduct.id;
   }
 
-  async findAll(): Promise<Product[]> {
+  async findAll(): Promise<GetProductResponseDto[]> {
     return this.productRepository.findAll();
   }
 
