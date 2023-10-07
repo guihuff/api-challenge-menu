@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CategoryRepository } from '../category-repository';
 import { Category } from 'src/category/interfaces/category.interface';
 import { PrismaService } from 'src/database/prisma.service';
+import { GetCategoryResponseDto } from 'src/category/dto/get-category-response.dto';
 
 @Injectable()
 export class CategoryRepositoryPrismaImp implements CategoryRepository {
@@ -26,6 +27,7 @@ export class CategoryRepositoryPrismaImp implements CategoryRepository {
     });
     return categories;
   }
+
   async findById(id: string): Promise<Category> {
     const category = await this.prisma.category.findFirst({
       where: {
@@ -39,6 +41,45 @@ export class CategoryRepositoryPrismaImp implements CategoryRepository {
     });
     return category;
   }
+
+  async findCategoryWithProducts(id: string): Promise<GetCategoryResponseDto> {
+    const category = await this.prisma.category.findFirst({
+      where: {
+        id,
+      },
+      select: {
+        id: true,
+        name: true,
+        description: true,
+      },
+    });
+
+    console.log(category);
+
+    const products = await this.prisma.product.findMany({
+      where: {
+        id_category: id,
+      },
+      select: {
+        id: true,
+        name: true,
+        description: true,
+        price: true,
+        image: true,
+        imageURL: true,
+      },
+    });
+
+    const categoryProducts: GetCategoryResponseDto = {
+      id: category.id,
+      name: category.name,
+      description: category.description,
+      products,
+    };
+
+    return categoryProducts;
+  }
+
   async delete(id: string): Promise<void> {
     await this.prisma.category.delete({
       where: {

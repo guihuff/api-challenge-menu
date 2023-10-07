@@ -12,7 +12,7 @@ POST {{apiurl}}/categories
 Content-Type: application/json
 
 {
-  "name": "category um",
+  "name": "category dois",
   "description": "um testezinho basico"
 }
 
@@ -20,7 +20,7 @@ Content-Type: application/json
 GET {{apiurl}}/categories
 
 ### GET category by id
-GET {{apiurl}}/categories/8a44b338-db03-4dd7-9fe3-03cdcd69732b
+GET {{apiurl}}/categories/0d5b72fb-1b08-4313-8b4c-dadc2be2974a
 
 ### DELETE category
 DELETE {{apiurl}}/categories/8a44b338-db03-4dd7-9fe3-03cdcd69732b

@@ -4,6 +4,7 @@ import { randomUUID } from 'crypto';
 import { Category } from './interfaces/category.interface';
 import { CategoryRepository } from './repositories/category-repository';
 import { UpdateCategoryDto } from './dto/update-category.dto';
+import { GetCategoryResponseDto } from './dto/get-category-response.dto';
 
 @Injectable()
 export class CategoryService {
@@ -28,6 +29,14 @@ export class CategoryService {
 
   async findById(id: string): Promise<Category> {
     const category = await this.categoryRepository.findById(id);
+    if (!category) {
+      throw new NotFoundException(`Categoria com ID ${id} não encontrado`);
+    }
+    return category;
+  }
+
+  async findCategoryWithProducts(id: string): Promise<GetCategoryResponseDto> {
+    const category = await this.categoryRepository.findCategoryWithProducts(id);
     if (!category) {
       throw new NotFoundException(`Categoria com ID ${id} não encontrado`);
     }

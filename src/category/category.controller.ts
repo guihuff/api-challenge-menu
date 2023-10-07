@@ -12,6 +12,7 @@ import { CreateCategoryDto } from './dto/create-category.dto';
 import { CategoryService } from './category.service';
 import { Category } from './interfaces/category.interface';
 import { UpdateCategoryDto } from './dto/update-category.dto';
+import { GetCategoryResponseDto } from './dto/get-category-response.dto';
 
 @Controller('categories')
 export class CategoryController {
@@ -30,8 +31,8 @@ export class CategoryController {
   }
 
   @Get(':id')
-  async findById(@Param('id') id: string): Promise<Category> {
-    return this.categoriesService.findById(id);
+  async findById(@Param('id') id: string): Promise<GetCategoryResponseDto> {
+    return this.categoriesService.findCategoryWithProducts(id);
   }
 
   @Delete(':id')
