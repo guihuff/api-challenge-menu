@@ -281,14 +281,13 @@ describe('ProductController', () => {
   });
   describe('findProfileImage', () => {
     it('should send the image when it exists', async () => {
-      const imagename = 'example.jpg'; // Nome de imagem existente
+      const imagename = 'example.jpg';
       const response: Response = {
         sendFile: jest.fn(),
       } as unknown as Response;
 
       await productController.findProfileImage(imagename, response);
 
-      // Verifique se a função sendFile foi chamada com os parâmetros corretos
       expect(response.sendFile).toHaveBeenCalledWith(imagename, {
         root: './upload',
       });
