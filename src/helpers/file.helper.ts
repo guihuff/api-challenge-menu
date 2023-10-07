@@ -20,7 +20,7 @@ export class HelperFile {
     try {
       await unlink(`./${file}`);
     } catch (err) {
-      throw new Error('Arquivo não encontrado');
+      throw new Error('file not found');
     }
     return true;
   }
