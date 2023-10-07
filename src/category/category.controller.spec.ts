@@ -203,7 +203,6 @@ describe('CategoryController', () => {
         .spyOn(categoryServiceTest, 'delete')
         .mockRejectedValue(new Error('Database error'));
 
-      // Verifique se a função lança uma exceção ao encontrar um erro
       await expect(
         categoryControllerTest.delete(categoryId),
       ).rejects.toThrowError(Error);
@@ -250,7 +249,7 @@ describe('CategoryController', () => {
 
       jest
         .spyOn(categoryServiceTest, 'update')
-        .mockRejectedValue(new NotFoundException(`product not found`));
+        .mockRejectedValue(new NotFoundException(`category not found`));
 
       await expect(
         categoryControllerTest.update(updateCategory),

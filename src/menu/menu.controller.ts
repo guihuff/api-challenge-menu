@@ -19,10 +19,9 @@ export class MenuController {
   constructor(private menusService: MenuService) {}
 
   @Post()
-  async create(@Body() createMenu: CreateMenuDto): Promise<string> {
+  async create(@Body() createMenu: CreateMenuDto): Promise<{ id: string }> {
     const id = await this.menusService.create(createMenu);
-    const jsonString = JSON.stringify({ id });
-    return jsonString;
+    return { id };
   }
 
   @Get('/all')
