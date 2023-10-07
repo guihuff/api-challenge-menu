@@ -19,10 +19,9 @@ export class CategoryController {
   constructor(private categoriesService: CategoryService) {}
 
   @Post()
-  async create(@Body() category: CreateCategoryDto): Promise<string> {
+  async create(@Body() category: CreateCategoryDto): Promise<{ id: string }> {
     const id = await this.categoriesService.create(category);
-    const jsonString = JSON.stringify({ id });
-    return jsonString;
+    return { id };
   }
 
   @Get()
