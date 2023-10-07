@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { CategoryRepository } from '../category-repository';
-import { Category } from 'src/category/interfaces/category.interface';
-import { PrismaService } from 'src/database/prisma.service';
-import { GetCategoryResponseDto } from 'src/category/dto/get-category-response.dto';
+import { Category } from '../../interfaces/category.interface';
+import { PrismaService } from '../../../database/prisma.service';
+import { GetCategoryResponseDto } from '../../dto/get-category-response.dto';
 
 @Injectable()
 export class CategoryRepositoryPrismaImp implements CategoryRepository {
