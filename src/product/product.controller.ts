@@ -18,7 +18,7 @@ import { UpdateProductDto } from './dtos/update-product.dto';
 import { GetProductResponseDto } from './dtos/get-product-response.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
-import { HelperFile } from 'src/helpers/file.helper';
+import { HelperFile } from '../helpers/file.helper';
 import { Response } from 'express';
 
 @Controller('products')
@@ -26,10 +26,11 @@ export class ProductController {
   constructor(private productsService: ProductService) {}
 
   @Post()
-  async create(@Body() createProduct: CreateProductDto): Promise<string> {
+  async create(
+    @Body() createProduct: CreateProductDto,
+  ): Promise<{ id: string }> {
     const id = await this.productsService.create(createProduct);
-    const jsonString = JSON.stringify({ id });
-    return jsonString;
+    return { id };
   }
 
   @Get()

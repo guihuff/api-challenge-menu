@@ -1,8 +1,8 @@
-import { Product } from 'src/product/interfaces/product.interface';
+import { Product } from '../../interfaces/product.interface';
 import { ProductRepository } from '../product-repository';
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
-import { PrismaService } from 'src/database/prisma.service';
-import { GetProductResponseDto } from 'src/product/dtos/get-product-response.dto';
+import { PrismaService } from '../../../database/prisma.service';
+import { GetProductResponseDto } from '../../dtos/get-product-response.dto';
 
 @Injectable()
 export class ProductRepositoryPrismaImp implements ProductRepository {
@@ -22,7 +22,9 @@ export class ProductRepositoryPrismaImp implements ProductRepository {
         },
       })
       .catch(() => {
-        throw new InternalServerErrorException('O Produto não foi cadastrado');
+        throw new InternalServerErrorException(
+          'the product has not been registered',
+        );
       });
   }
 

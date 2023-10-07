@@ -28,10 +28,10 @@ Content-Type: application/json
 GET {{apiurl}}/products
 
 ### GET product by id
-GET {{apiurl}}/products/8515f48e-eabb-4c48-abc8-9228b8f5c369
+GET {{apiurl}}/products/9cce1fce-8fa0-4f07-bd4f-35311309f8d9
 
 ### DELETE product
-DELETE {{apiurl}}/products/3ac11ef5-e823-480f-998c-7c87cc5d0ca9
+DELETE {{apiurl}}/products/9cce1fce-8fa0-4f07-bd4f-35311309f8d9
 
 ### UPDATE product
 # Recebe os dados para modificar um produto (update-product.dto)
@@ -40,7 +40,7 @@ PATCH  {{apiurl}}/products
 Content-Type: application/json
 
 {
-  "id": "12dcdd20-21c9-4262-af38-97c34791f50b",
+  "id": "9cce1fce-8fa0-4f07-bd4f-35311309f8d9",
   "price": 35
 }
 
@@ -51,7 +51,7 @@ Content-Type: multipart/form-data; boundary=Splitter
 --Splitter
 Content-Disposition: form-data; name="id"
 
-4fa8164c-3fd0-4d7d-a22d-3eb75ef78230
+9cce1fce-8fa0-4f07-bd4f-35311309f8d9
 --Splitter
 Content-Disposition: form-data; name="image"; filename="P1.jpg" 
 Content-Type: image/jpeg

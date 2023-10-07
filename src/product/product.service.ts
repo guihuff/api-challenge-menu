@@ -5,7 +5,7 @@ import { Product } from './interfaces/product.interface';
 import { CreateProductDto } from './dtos/create-product.dto';
 import { UpdateProductDto } from './dtos/update-product.dto';
 import { GetProductResponseDto } from './dtos/get-product-response.dto';
-import { HelperFile } from 'src/helpers/file.helper';
+import { HelperFile } from '../helpers/file.helper';
 
 @Injectable()
 export class ProductService {
@@ -34,7 +34,7 @@ export class ProductService {
   async findById(id: string): Promise<GetProductResponseDto> {
     const product = await this.productRepository.findByIdWithCategory(id);
     if (!product) {
-      throw new NotFoundException(`Produto com ID ${id} não encontrado`);
+      throw new NotFoundException(`product with ID ${id} not found`);
     }
     return product;
   }
@@ -42,7 +42,7 @@ export class ProductService {
   async delete(id: string): Promise<void> {
     const product = await this.productRepository.findById(id);
     if (!product) {
-      throw new NotFoundException(`Produto não encontrado`);
+      throw new NotFoundException(`product not found`);
     }
     await this.productRepository.delete(id);
   }
@@ -50,7 +50,7 @@ export class ProductService {
   async update(product: UpdateProductDto): Promise<Product> {
     const productUpdating = await this.productRepository.findById(product.id);
     if (!productUpdating) {
-      throw new NotFoundException(`Produto não encontrado`);
+      throw new NotFoundException(`product not found`);
     }
 
     if (product.name) {
@@ -78,9 +78,8 @@ export class ProductService {
   ): Promise<GetProductResponseDto> {
     const productUpdating = await this.productRepository.findById(id);
     if (!productUpdating) {
-      throw new NotFoundException(`Produto não encontrado`);
+      throw new NotFoundException(`product not found`);
     }
-    console.log(productUpdating);
     if (productUpdating.image === null || productUpdating.image === '') {
       await this.productRepository.updateImage(id, fileName, file);
     } else {
