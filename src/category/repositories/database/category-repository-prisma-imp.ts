@@ -43,7 +43,7 @@ export class CategoryRepositoryPrismaImp implements CategoryRepository {
   }
 
   async findCategoryWithProducts(id: string): Promise<GetCategoryResponseDto> {
-    const category = await this.prisma.category.findFirst({
+    const category = await this.prisma.category.findFirstOrThrow({
       where: {
         id,
       },
@@ -53,8 +53,6 @@ export class CategoryRepositoryPrismaImp implements CategoryRepository {
         description: true,
       },
     });
-
-    console.log(category);
 
     const products = await this.prisma.product.findMany({
       where: {
