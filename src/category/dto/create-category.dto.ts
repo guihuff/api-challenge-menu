@@ -1,16 +1,10 @@
 import { IsNotEmpty, Length } from 'class-validator';
 
-export class CreateProductDto {
+export class CreateCategoryDto {
   @IsNotEmpty()
-  @Length(5, 80)
+  @Length(5, 30)
   name: string;
 
   @IsNotEmpty()
   description: string;
-
-  @IsNotEmpty()
-  price: number;
-
-  @IsNotEmpty()
-  id_category: string;
 }

@@ -1,35 +1,63 @@
 ### Variables
-@apiurl = http://localhost:3000
+@apiurl = http://localhost:80
 
 ### GET pong
 # Teste para verificar se a api está no ar
 GET {{apiurl}}/ping
 
 ### POST product
+# Recebe os dados para cadastrar um produto (create-product.dto)
+# {
+#   "name": "teste 2",
+#   "description": "um testezinho basico",
+#   "price": 89,
+#   "id_category": "string"
+# }
 POST {{apiurl}}/products
 Content-Type: application/json
 
 {
-  "name": "teste 2",
+  "name": "teste 2 image null",
   "description": "um testezinho basico",
   "price": 89,
-  "id_category": "string"
+  "id_category": "0d5b72fb-1b08-4313-8b4c-dadc2be2974a",
+  "image": "imageName"
 }
 
 ### GET products
 GET {{apiurl}}/products
 
 ### GET product by id
-GET {{apiurl}}/products/d7cdbe66-96b7-4671-a406-cc263a03dcb8
+GET {{apiurl}}/products/9cce1fce-8fa0-4f07-bd4f-35311309f8d9
 
 ### DELETE product
-DELETE {{apiurl}}/products/aaadbb94-4687-4c18-8127-0f5e52c21bfb
+DELETE {{apiurl}}/products/9cce1fce-8fa0-4f07-bd4f-35311309f8d9
 
 ### UPDATE product
-PUT {{apiurl}}/products
+# Recebe os dados para modificar um produto (update-product.dto)
+
+PATCH  {{apiurl}}/products
 Content-Type: application/json
 
 {
-  "id": "daccb3a5-8a32-4f1a-adf8-206481b39545",
-  "price": 22.99
+  "id": "9cce1fce-8fa0-4f07-bd4f-35311309f8d9",
+  "price": 35
 }
+
+### UPDATE product adicionando uma imagem a um produto
+PATCH {{apiurl}}/products/image
+Content-Type: multipart/form-data; boundary=Splitter
+
+--Splitter
+Content-Disposition: form-data; name="id"
+
+9cce1fce-8fa0-4f07-bd4f-35311309f8d9
+--Splitter
+Content-Disposition: form-data; name="image"; filename="P1.jpg" 
+Content-Type: image/jpeg
+
+< /home/gfhuff/Pictures/P1.jpg
+--Splitter--
+
+
+

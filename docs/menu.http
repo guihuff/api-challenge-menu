@@ -1,0 +1,62 @@
+menu.products### Variables
+@apiurl = http://localhost:3000
+
+### GET pong
+# Teste para verificar se a api está no ar
+GET {{apiurl}}/ping
+
+### POST menus
+# Recebe os dados para cadastrar um menu (create-menu.dto) Noite
+
+POST {{apiurl}}/menus
+Content-Type: application/json
+
+{
+  "name": "menu da noite",
+  "products": [
+    {"id_product": "1a3bfc26-f095-42a7-a132-000c44c1e94e"},
+    {"id_product": "3362ed42-3b80-468e-91fa-9f12ac1f327b"}],  "time": "NIGHT",
+  "isActive": true 
+}
+
+### POST menus
+# Recebe os dados para cadastrar um menu (create-menu.dto) Dia
+
+POST {{apiurl}}/menus
+Content-Type: application/json
+
+{
+  "name": "menu do dia",
+  "products": [
+    {"id_product": "1a3bfc26-f095-42a7-a132-000c44c1e94e"},
+    {"id_product": "3362ed42-3b80-468e-91fa-9f12ac1f327b"}],
+  "time": "DAY",
+  "isActive": true 
+}
+
+
+### GET menus
+GET {{apiurl}}/menus/all
+
+### GET menu by id
+GET {{apiurl}}/menus/f4655819-5da8-4648-ae6b-b352acb3d473
+
+### GET menu by hour
+GET {{apiurl}}/menus
+
+### DELETE menu
+DELETE {{apiurl}}/menus/4d41b161-c093-4774-aa73-6e1ca45d1682
+
+### UPDATE menu
+# Recebe os dados para modificar um produto (update-menu.dto)
+
+PATCH  {{apiurl}}/menus
+Content-Type: application/json
+
+{
+  "id": "f4655819-5da8-4648-ae6b-b352acb3d473",
+  "time": "NIGHT",
+  "products": [
+    {"id_product": "1a3bfc26-f095-42a7-a132-000c44c1e94e"},
+    {"id_product": "bfe6f0b4-1852-4906-b4e8-d0eb89fbedc8"}]
+}

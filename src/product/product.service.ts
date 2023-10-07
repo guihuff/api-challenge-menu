@@ -4,6 +4,8 @@ import { ProductRepository } from './repositories/product-repository';
 import { Product } from './interfaces/product.interface';
 import { CreateProductDto } from './dtos/create-product.dto';
 import { UpdateProductDto } from './dtos/update-product.dto';
+import { GetProductResponseDto } from './dtos/get-product-response.dto';
+import { HelperFile } from '../helpers/file.helper';
 
 @Injectable()
 export class ProductService {
@@ -17,22 +19,22 @@ export class ProductService {
       price,
       description,
       id_category,
-      image: 'imagem',
+      image: null,
+      imageURL: null,
     };
 
     await this.productRepository.create(createProduct);
-
     return createProduct.id;
   }
 
-  async findAll(): Promise<Product[]> {
+  async findAll(): Promise<GetProductResponseDto[]> {
     return this.productRepository.findAll();
   }
 
-  async findById(id: string): Promise<Product> {
-    const product = await this.productRepository.findById(id);
+  async findById(id: string): Promise<GetProductResponseDto> {
+    const product = await this.productRepository.findByIdWithCategory(id);
     if (!product) {
-      throw new NotFoundException(`Produto com ID ${id} não encontrado`);
+      throw new NotFoundException(`product with ID ${id} not found`);
     }
     return product;
   }
@@ -40,7 +42,7 @@ export class ProductService {
   async delete(id: string): Promise<void> {
     const product = await this.productRepository.findById(id);
     if (!product) {
-      throw new NotFoundException(`Produto não encontrado`);
+      throw new NotFoundException(`product not found`);
     }
     await this.productRepository.delete(id);
   }
@@ -48,8 +50,9 @@ export class ProductService {
   async update(product: UpdateProductDto): Promise<Product> {
     const productUpdating = await this.productRepository.findById(product.id);
     if (!productUpdating) {
-      throw new NotFoundException(`Produto não encontrado`);
+      throw new NotFoundException(`product not found`);
     }
+
     if (product.name) {
       productUpdating.name = product.name;
     }
@@ -62,11 +65,30 @@ export class ProductService {
     if (product.id_category) {
       productUpdating.id_category = product.id_category;
     }
-    if (product.image) {
-      productUpdating.image = product.image;
-    }
+
     await this.productRepository.update(productUpdating);
 
     return productUpdating;
+  }
+
+  async updateImage(
+    id: string,
+    fileName: string,
+    file: string,
+  ): Promise<GetProductResponseDto> {
+    const productUpdating = await this.productRepository.findById(id);
+    if (!productUpdating) {
+      throw new NotFoundException(`product not found`);
+    }
+    if (productUpdating.image === null || productUpdating.image === '') {
+      await this.productRepository.updateImage(id, fileName, file);
+    } else {
+      await HelperFile.removeFile(productUpdating.imageURL);
+      await this.productRepository.updateImage(id, fileName, file);
+    }
+
+    const product = await this.productRepository.findByIdWithCategory(id);
+
+    return product;
   }
 }

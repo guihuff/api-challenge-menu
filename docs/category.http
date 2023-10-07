@@ -1,0 +1,38 @@
+### Variables
+@apiurl = http://localhost:80
+
+### GET pong
+# Teste para verificar se a api está no ar
+GET {{apiurl}}/ping
+
+### POST categories
+# Recebe os dados para cadastrar um produto (create-product.dto)
+
+POST {{apiurl}}/categories
+Content-Type: application/json
+
+{
+  "name": "bebidas",
+  "description": "bebidas sem álcool"
+}
+
+### GET categories
+GET {{apiurl}}/categories
+
+### GET category by id
+GET {{apiurl}}/categories/8ec83710-c5e6-4b44-8cdc-f927088e87fb
+
+### DELETE category
+DELETE {{apiurl}}/categories/8a44b338-db03-4dd7-9fe3-03cdcd69732b
+
+### UPDATE category
+# Recebe os dados para modificar um produto (update-category.dto)
+
+PUT {{apiurl}}/categories
+Content-Type: application/json
+
+{
+  "id": "7e755287-3baa-4294-9f3f-52b270af9051",
+  "name": "Teste Um Update",
+  "description": "Teste de update"
+}
