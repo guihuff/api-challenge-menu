@@ -1,5 +1,5 @@
 ### Variables
-@apiurl = http://localhost:3000
+@apiurl = http://localhost:80
 
 ### GET pong
 # Teste para verificar se a api está no ar
