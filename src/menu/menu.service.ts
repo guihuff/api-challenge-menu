@@ -33,7 +33,7 @@ export class MenuService {
   async findById(id: string): Promise<Menu> {
     const menu = await this.menuRepository.findById(id);
     if (!menu) {
-      throw new NotFoundException(`Menu com ID ${id} não encontrado`);
+      throw new NotFoundException(`menu with ID ${id} not found`);
     }
     return menu;
   }
@@ -60,7 +60,7 @@ export class MenuService {
   async delete(id: string): Promise<void> {
     const menu = await this.menuRepository.findById(id);
     if (!menu) {
-      throw new NotFoundException(`Menu não encontrado`);
+      throw new NotFoundException(`menu not found`);
     }
     await this.menuRepository.delete(id);
   }
@@ -68,7 +68,7 @@ export class MenuService {
   async update(menu: UpdateMenuDto): Promise<Menu> {
     const menuUpdating = await this.menuRepository.findById(menu.id);
     if (!menuUpdating) {
-      throw new NotFoundException(`Menu não encontrado`);
+      throw new NotFoundException(`menu not found`);
     }
 
     if (menu.name) {

@@ -3,7 +3,7 @@ import { MenuController } from './menu.controller';
 import { MenuService } from './menu.service';
 import { MenuRepository } from './repositories/menu-repository';
 import { MenuRepositoryPrismaImp } from './repositories/database/menu-repository-prisma-imp';
-import { PrismaService } from 'src/database/prisma.service';
+import { PrismaService } from '../database/prisma.service';
 
 @Module({
   controllers: [MenuController],

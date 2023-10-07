@@ -1,9 +1,9 @@
-import { Menu } from 'src/menu/interfaces/menu.interface';
+import { Menu } from '../../interfaces/menu.interface';
 import { MenuRepository } from '../menu-repository';
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
-import { PrismaService } from 'src/database/prisma.service';
+import { PrismaService } from '../../../database/prisma.service';
 import { $Enums } from '@prisma/client';
-import { ResponseFindMenuDto } from 'src/menu/dto/response-find-menu-dto';
+import { ResponseFindMenuDto } from '../../dto/response-find-menu-dto';
 
 @Injectable()
 export class MenuRepositoryPrismaImp implements MenuRepository {
@@ -23,7 +23,9 @@ export class MenuRepositoryPrismaImp implements MenuRepository {
         },
       })
       .catch(() => {
-        throw new InternalServerErrorException('O Cardápio não foi cadastrado');
+        throw new InternalServerErrorException(
+          'the menu has not been registered',
+        );
       });
   }
 
@@ -130,7 +132,7 @@ export class MenuRepositoryPrismaImp implements MenuRepository {
         },
       })
       .catch(() => {
-        throw new InternalServerErrorException('O Cardápio não foi atualizado');
+        throw new InternalServerErrorException('the menu has not been updated');
       });
     return menu;
   }
