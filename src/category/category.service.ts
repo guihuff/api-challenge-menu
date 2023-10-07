@@ -30,7 +30,7 @@ export class CategoryService {
   async findById(id: string): Promise<Category> {
     const category = await this.categoryRepository.findById(id);
     if (!category) {
-      throw new NotFoundException(`Categoria com ID ${id} não encontrado`);
+      throw new NotFoundException(`category with ID ${id} not found`);
     }
     return category;
   }
@@ -38,7 +38,7 @@ export class CategoryService {
   async findCategoryWithProducts(id: string): Promise<GetCategoryResponseDto> {
     const category = await this.categoryRepository.findCategoryWithProducts(id);
     if (!category) {
-      throw new NotFoundException(`Categoria com ID ${id} não encontrado`);
+      throw new NotFoundException(`category with ID ${id} not found`);
     }
     return category;
   }
@@ -46,7 +46,7 @@ export class CategoryService {
   async delete(id: string): Promise<void> {
     const category = await this.categoryRepository.findById(id);
     if (!category) {
-      throw new NotFoundException(`Categoria não encontrado`);
+      throw new NotFoundException(`category not found`);
     }
     await this.categoryRepository.delete(id);
   }
@@ -56,7 +56,7 @@ export class CategoryService {
       category.id,
     );
     if (!categoryUpdating) {
-      throw new NotFoundException(`Produto não encontrado`);
+      throw new NotFoundException(`category not found`);
     }
     const categoryAfter: Category = {
       id: category.id,

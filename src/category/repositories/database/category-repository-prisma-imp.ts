@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { CategoryRepository } from '../category-repository';
 import { Category } from '../../interfaces/category.interface';
 import { PrismaService } from '../../../database/prisma.service';
@@ -9,13 +9,19 @@ export class CategoryRepositoryPrismaImp implements CategoryRepository {
   constructor(private prisma: PrismaService) {}
 
   async create({ id, name, description }: Category): Promise<void> {
-    await this.prisma.category.create({
-      data: {
-        id,
-        name,
-        description,
-      },
-    });
+    await this.prisma.category
+      .create({
+        data: {
+          id,
+          name,
+          description,
+        },
+      })
+      .catch(() => {
+        throw new InternalServerErrorException(
+          'the category has not been registered',
+        );
+      });
   }
   async findAll(): Promise<Category[]> {
     const categories = await this.prisma.category.findMany({

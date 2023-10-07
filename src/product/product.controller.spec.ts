@@ -14,40 +14,6 @@ import { Product } from './interfaces/product.interface';
 import { UpdateProductDto } from './dtos/update-product.dto';
 import { validate } from 'class-validator';
 import { Response } from 'express';
-// import { UpdateProductDto } from './dtos/update-product.dto';
-// import { GetProductResponseDto } from './dtos/get-product-response.dto';
-
-const productTest: Product = {
-  id: 'product-test-id',
-  name: 'product-test-name',
-  description: 'product-teste-desc',
-  price: 99,
-  id_category: 'category-id',
-  image: 'image.jpg',
-  imageURL: 'upload/image.jpg',
-};
-
-const file: Express.Multer.File = {
-  fieldname: 'image',
-  originalname: 'example.jpg',
-  encoding: '7bit',
-  mimetype: 'image/jpeg',
-  destination: './upload/',
-  filename: 'example.jpg',
-  path: './upload/example.jpg',
-  size: 12345,
-  buffer: null,
-  stream: null,
-};
-const updatedProductResponse: GetProductResponseDto = {
-  id: 'teste-update-image',
-  name: 'test-update-image-name',
-  description: 'test-update-image-desc',
-  price: 30,
-  image: file.filename,
-  imageURL: file.path,
-  category: { id: 'category-id', name: 'category-name' },
-};
 
 describe('ProductController', () => {
   let productController: ProductController;
@@ -69,6 +35,38 @@ describe('ProductController', () => {
     productController = module.get<ProductController>(ProductController);
     productService = module.get<ProductService>(ProductService);
   });
+
+  const productTest: Product = {
+    id: 'product-test-id',
+    name: 'product-test-name',
+    description: 'product-teste-desc',
+    price: 99,
+    id_category: 'category-id',
+    image: 'image.jpg',
+    imageURL: 'upload/image.jpg',
+  };
+
+  const file: Express.Multer.File = {
+    fieldname: 'image',
+    originalname: 'example.jpg',
+    encoding: '7bit',
+    mimetype: 'image/jpeg',
+    destination: './upload/',
+    filename: 'example.jpg',
+    path: './upload/example.jpg',
+    size: 12345,
+    buffer: null,
+    stream: null,
+  };
+  const updatedProductResponse: GetProductResponseDto = {
+    id: 'teste-update-image',
+    name: 'test-update-image-name',
+    description: 'test-update-image-desc',
+    price: 30,
+    image: file.filename,
+    imageURL: file.path,
+    category: { id: 'category-id', name: 'category-name' },
+  };
 
   it('should be defined', () => {
     expect(productController).toBeDefined();

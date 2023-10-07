@@ -13,26 +13,26 @@ import { GetProductResponseDto } from './dtos/get-product-response.dto';
 import { UpdateProductDto } from './dtos/update-product.dto';
 import { HelperFile } from '../helpers/file.helper';
 
-const productTest: Product = {
-  id: 'product-test-id',
-  name: 'product-test-name',
-  description: 'product-teste-desc',
-  price: 99,
-  id_category: 'category-id',
-  image: 'image.jpg',
-  imageURL: 'upload/image.jpg',
-};
-
-const createProductDto: CreateProductDto = {
-  name: 'test create product',
-  description: 'test create product description',
-  price: 33,
-  id_category: 'a category',
-};
-
 describe('ProductService', () => {
   let productServiceTest: ProductService;
   let productRepositoryTest: ProductRepository;
+
+  const productTest: Product = {
+    id: 'product-test-id',
+    name: 'product-test-name',
+    description: 'product-teste-desc',
+    price: 99,
+    id_category: 'category-id',
+    image: 'image.jpg',
+    imageURL: 'upload/image.jpg',
+  };
+
+  const createProductDto: CreateProductDto = {
+    name: 'test create product',
+    description: 'test create product description',
+    price: 33,
+    id_category: 'a category',
+  };
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
