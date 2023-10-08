@@ -8,6 +8,8 @@ As funcionalidades da API incluem a entrega de dados de cardápios. Além do Nes
 
 Na aplicação, existem três módulos principais: o módulo de cardápio (menu), o de categorias (category) e o de produtos (product). Cada um desses módulos é responsável por uma parte específica da funcionalidade geral. Cada módulo é dividido em controller, service e repositório, onde o repositório fica encarregado do acesso ao banco de dados. Essa abordagem desacopla a aplicação, o que facilita futuras alterações no acesso ao banco de dados, caso seja necessário.
 
+Como diferencial, destacam-se o uso de imagens Docker, tornando a implantação em servidores de nuvem mais fácil, e uma documentação abrangente na qual cada rota do CRUD é exemplificada. Além disso, a documentação inclui um documento com informações essenciais sobre a modelagem e o desenvolvimento do projeto.
+
 ### • Como você se vê daqui a 5 anos?
 
 Em cinco anos, imagino-me fazendo parte de uma empresa que valoriza profundamente seus funcionários, demonstrando carinho e respeito por todos. Tenho a ambição de ocupar uma posição de liderança, seja como Product Owner (PO), liderando uma equipe multidisciplinar em projetos desafiadores.
