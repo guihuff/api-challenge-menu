@@ -8,16 +8,14 @@ Este documento é referente aos requisitos e modelagem do sistema para o desafio
 
 - NestJS;
 - TypeScript;
-- JavaScript;
 - NodeJS;
-- Yarn
-- (MongoDB, MySQL); [https://planetscale.com/pricing](https://planetscale.com/pricing)
+- Yarn;
+- MySQL [https://planetscale.com/pricing](https://planetscale.com/pricing);
 - Prisma.orm;
 - Docker;
 - Git;
-- Github Actions.
-- Rest Client ([https://dev.to/leandroats/vscode-rest-client-2cei](https://dev.to/leandroats/vscode-rest-client-2cei))
-- Draw.io
+- Rest Client ([https://dev.to/leandroats/vscode-rest-client-2cei](https://dev.to/leandroats/vscode-rest-client-2cei));
+- Draw.io;
 
 **Bibliotecas:**
 
