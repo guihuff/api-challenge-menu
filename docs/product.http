@@ -1,5 +1,5 @@
 ### Variables
-@apiurl = http://localhost:80
+@apiurl = http://localhost:3000
 
 ### GET pong
 # Teste para verificar se a api está no ar
@@ -17,11 +17,10 @@ POST {{apiurl}}/products
 Content-Type: application/json
 
 {
-  "name": "teste 2 image null",
-  "description": "um testezinho basico",
-  "price": 89,
-  "id_category": "0d5b72fb-1b08-4313-8b4c-dadc2be2974a",
-  "image": "imageName"
+  "name": "Café expresso",
+  "description": "Café especial passado na cafeteira expressa",
+  "price": 9.00,
+  "id_category": "1451b521-1f06-43ff-95e3-c98a6d682e10"
 }
 
 ### GET products
