@@ -4,7 +4,7 @@ WORKDIR /usr/src/api
 
 COPY . .
 
-# COPY ./.env.production ./.env
+COPY ./.env.production ./.env
 
 RUN yarn --silent --no-optional --no-fund --log-level=error
 
