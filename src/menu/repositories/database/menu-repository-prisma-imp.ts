@@ -102,6 +102,12 @@ export class MenuRepositoryPrismaImp implements MenuRepository {
   }
 
   async delete(id: string): Promise<void> {
+    await this.prisma.menuProduct.deleteMany({
+      where: {
+        id_menu: id,
+      },
+    });
+
     await this.prisma.menu.delete({
       where: { id },
     });
