@@ -15,7 +15,8 @@ Content-Type: application/json
   "name": "menu da noite",
   "products": [
     {"id_product": "1a3bfc26-f095-42a7-a132-000c44c1e94e"},
-    {"id_product": "3362ed42-3b80-468e-91fa-9f12ac1f327b"}],  "time": "NIGHT",
+    {"id_product": "3362ed42-3b80-468e-91fa-9f12ac1f327b"}],  
+  "time": "NIGHT",
   "isActive": true 
 }
 
@@ -45,7 +46,7 @@ GET {{apiurl}}/menus/f4655819-5da8-4648-ae6b-b352acb3d473
 GET {{apiurl}}/menus
 
 ### DELETE menu
-DELETE {{apiurl}}/menus/4d41b161-c093-4774-aa73-6e1ca45d1682
+DELETE {{apiurl}}/menus/732780d0-cd75-4d8f-9b82-73eca2cf560e
 
 ### UPDATE menu
 # Recebe os dados para modificar um produto (update-menu.dto)

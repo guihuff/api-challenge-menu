@@ -30,7 +30,7 @@ GET {{apiurl}}/products
 GET {{apiurl}}/products/9cce1fce-8fa0-4f07-bd4f-35311309f8d9
 
 ### DELETE product
-DELETE {{apiurl}}/products/9cce1fce-8fa0-4f07-bd4f-35311309f8d9
+DELETE {{apiurl}}/products/4ed5249d-24b6-4d5b-b7b8-720cfcf6ce1d
 
 ### UPDATE product
 # Recebe os dados para modificar um produto (update-product.dto)
@@ -50,7 +50,7 @@ Content-Type: multipart/form-data; boundary=Splitter
 --Splitter
 Content-Disposition: form-data; name="id"
 
-9cce1fce-8fa0-4f07-bd4f-35311309f8d9
+614a8e0a-5a9c-4d3b-9576-5854c284cb35
 --Splitter
 Content-Disposition: form-data; name="image"; filename="P1.jpg" 
 Content-Type: image/jpeg
